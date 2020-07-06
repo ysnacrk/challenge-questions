@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+message User{
+    int32 id = 1;
+    string first_name = 2;
+    string last_name = 3;
+    string email = 4;
+    string gender = 5;
+    string ip_address = 6;
+    string user_name = 7;
+    string agent = 8;
+    string country = 9;
+}
+
+message Response {
+    int32 user_count = 1;
+    string elapsed_time = 2;
+}
+
+
+service  UserService {
+    rpc RecordData (stream User) returns (Response) {}
+}
