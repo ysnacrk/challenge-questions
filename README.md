@@ -2,8 +2,8 @@
 
 ## Açıklama;
 
-gRPC teknolojisini yeni yeni öğrendiğim için sunucu ve istemci tarafını pythonla yapabildim. 
-
+- Go dilini çok yatkın olmadığım için ve gRPCyi yeni yeni öğrendiğim için istemci ve sunucu tarafını Python ile yazıldı.  
+- Stream mesaj yapısını kullanmamın nedeni sunucuda verilerin tek tek bakılabilir olması.  
 
 ## Çalıştırmak için;
 
