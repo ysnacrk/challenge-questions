@@ -20,14 +20,14 @@ def read_json():
         filename = "users/" + str(i) + ".json"
         file = open(filename)
         for item in json.load(file):
-            user=user_pb2.User(
-                id=item["id"],
-                first_name=item["first_name"],
-                last_name=item["last_name"],
-                email=item["email"],
-                gender=item["gender"],
-                ip_address=item["ip_address"],
-                user_name=item["user_name"],
+            user = user_pb2.User(
+                id = item["id"],
+                first_name = item["first_name"],
+                last_name = item["last_name"],
+                email = item["email"],
+                gender = item["gender"],
+                ip_address = item["ip_address"],
+                user_name = item["user_name"],
                 agent = item["agent"],
                 country=item["country"],
             )
@@ -46,7 +46,8 @@ def record_data(stub):
     print("Finished trip with {} users. Time :  {} " .format(response.user_count , response.elapsed_time))
 
 def run():
-    with grpc.insecure_channel('localhost:50051') as channel:
+    print("client up")
+    with grpc.insecure_channel('server_:50051') as channel:
         stub = user_pb2_grpc.UserServiceStub(channel)
         record_data(stub)
 

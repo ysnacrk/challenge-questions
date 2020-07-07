@@ -15,8 +15,7 @@ and send user count and elapsed time
 
 
 """
-redis  = redis.Redis()
-
+redis = redis.Redis(host='redis', port=6379, db=0)
 class UserServicer(user_pb2_grpc.UserService):
     
     def RecordData(self, request_iterator, context):
@@ -25,7 +24,7 @@ class UserServicer(user_pb2_grpc.UserService):
 
         for user in request_iterator:
 
-            redis.rpush('users' , str(user))
+            redis.rpush('user' , str(user))
             user_count += 1
 
 
@@ -35,14 +34,13 @@ class UserServicer(user_pb2_grpc.UserService):
 
 def run():
 
+    redis.set("ee" , 123)
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     user_pb2_grpc.add_UserServiceServicer_to_server(
         UserServicer() , server)
-
-    server.add_insecure_port('[::]:50051') 
-    server.start()
+    server.add_insecure_port('0.0.0.0:50051') 
+    server.start() 
     server.wait_for_termination()
-
 
 if __name__ == '__main__':
     run()
